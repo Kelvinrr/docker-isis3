@@ -60,6 +60,10 @@ RUN rsync -azv --delete --partial isisdist.astrogeology.usgs.gov::x86-64_linux_F
 RUN mkdir /isis3data
 ENV ISIS3DATA /isis3data
 ENV ISISROOT /isis/
+ENV PATH "/isis/bin:$PATH"
 RUN echo '. /isis/scripts/isis3Startup.sh' >> ~/.bashrc
 
 # ENTRYPOINT ["/docker-entrypoint.sh"]
+
+
+docker run -v /var/run/docker.sock:/var/run/docker.sock -v /data/isis3.simg:/output --privileged -t --rm filo/docker2singularity kelvinrr/isis3
