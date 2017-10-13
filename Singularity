@@ -2,7 +2,7 @@
 Bootstrap: docker
 From: kelvinrr/isis3
 
-%setup
+%post
   chmod 775 /root
 
 %runscript
