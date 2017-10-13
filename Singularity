@@ -2,6 +2,7 @@
 Bootstrap: docker
 From: kelvinrr/isis3
 
+# handle permission issue in Singularity for Docker's home folder
 %post
   chmod 775 /root
 
