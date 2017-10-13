@@ -1,14 +1,16 @@
 # docker-isis3
 Docker container for USGS's Integrated Software for Imagers and Spectrometers version 3 (ISIS3). Singularity file is also offered which bootstraps the Docker image.
 
-## Docker
+## Usage
+
+`$ISIS3DATA` is set to `/isis3data`. By default, the directory is empty, you must mount the data download onto the image from the host along with your work area so you can pass them into ISIS applications and have persistent output.
 
 ```shell
 # create ISIS instance
-[user@computer]$ docker run -dt -v /path/to/data:/isis3data --name isis3 kelvinrr/isis3
+[user@computer]$ docker run -dt -v /path/to/data:/isis3data -v /workarea --name isis3 kelvinrr/isis3
 
 # do things
-[user@computer]$ docker exec isis3 stats from=/isis3data/data/base/testData/MarsPlanetaryRadius_45bottom.cub
+[user@computer]$ docker exec isis3 stats from=/workarea/MarsPlanetaryRadius_45bottom.cub
 Group = Results
   From                    = /isis3data/data/base/testData/MarsPlanetaryRadius-
                             _45bottom.cub
@@ -37,7 +39,7 @@ Group = Results
 ```shell
 [user@computer]$ singularity pull --name isis3.img shub://Kelvinrr/docker-isis3
 Progress |===================================| 100.0%
-Done. Container is at: /home/vagrant/Kelvinrr-docker-isis3-master.simg
+Done. Container is at: /home/vagrant/isis3.simg
 [user@computer]$ singularity exec --bind path/to/data:/isis3data isis3.simg stats from=/isis3data/data/base/testData/MarsPlanetaryRadius_45bottom.cub
 Group = Results
   From                    = /isis3data/data/base/testData/MarsPlanetaryRadius-
