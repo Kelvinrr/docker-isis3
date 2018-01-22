@@ -4,7 +4,7 @@ From: kelvinrr/isis3
 
 # handle permission issue in Singularity for Docker's home folder
 %post
-  mkdir /common /packages /scratch /data
+  mkdir /common /packages /scratch
   chmod 775 /root
 
 %runscript
